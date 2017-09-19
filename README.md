@@ -19,9 +19,9 @@ It fires *not when a font is loaded, but a CSS file is loaded*.
 const fontAvailability = require('font-availability')
 
 fontAvailability.waitFor('Your Font Family')
-	.then(_ => {
-		console.log('The font is available!')
-	})
+  .then(_ => {
+    console.log('The font is available!')
+  })
 ```
 
 ## Instance
@@ -46,13 +46,13 @@ document.body.appendChild(elLink)
 
 // wait
 fontAvailability.waitFor(fontFamily)
-	.then(_ => {
-		// then render on a canvas
-		const elCanvas = document.querySelector('#the-canvas')
-		const ctx = elCanvas.getContext('2d')
-		ctx.font = `20px/20px ${fontFamily}, serif`
-		ctx.fillText('Hello World!', 15, 22)
-	})
+  .then(_ => {
+    // then render on a canvas
+    const elCanvas = document.querySelector('#the-canvas')
+    const ctx = elCanvas.getContext('2d')
+    ctx.font = `20px/20px ${fontFamily}, serif`
+    ctx.fillText('Hello World!', 15, 22)
+  })
 ```
 
 # References
