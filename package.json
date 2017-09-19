@@ -4,6 +4,7 @@
   "description": "Wait until a font is actually available",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint ./index.js lib/**/*.js test/**/*.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -20,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/ginpei/font-availability/issues"
   },
-  "homepage": "https://github.com/ginpei/font-availability#readme"
+  "homepage": "https://github.com/ginpei/font-availability#readme",
+  "dependencies": {
+    "eslint": "^4.7.1"
+  }
 }

@@ -1,7 +1,8 @@
 module.exports = {
 	"env": {
 		"browser": true,
-		"es6": true
+		"es6": true,
+		"node": true
 	},
 	"extends": "eslint:recommended",
 	"rules": {
@@ -9,13 +10,13 @@ module.exports = {
 		"array-bracket-spacing": "error",
 		"array-callback-return": "error",
 		"arrow-body-style": "error",
-		"arrow-parens": "error",
+		"arrow-parens": "off",
 		"arrow-spacing": [
 			"error",
 			{
-				"before": false,
-				"after": false
-			}
+				"before": true,
+				"after": true,
+			},
 		],
 		"block-scoped-var": "error",
 		"block-spacing": "error",
@@ -64,7 +65,10 @@ module.exports = {
 		"func-names": "off",
 		"func-style": [
 			"error",
-			"declaration"
+			"declaration",
+			{
+				"allowArrowFunctions": true,
+			},
 		],
 		"generator-star-spacing": "error",
 		"global-require": "error",
@@ -72,16 +76,7 @@ module.exports = {
 		"handle-callback-err": "error",
 		"id-blacklist": "error",
 		"id-length": [
-			"error",
-			{
-				"exceptions": [
-					"$",
-					"i",
-					"l",
-					"x",
-					"y"
-				],
-			}
+			"off",
 		],
 		"id-match": "error",
 		"indent": [
@@ -115,6 +110,12 @@ module.exports = {
 		"no-caller": "error",
 		"no-catch-shadow": "error",
 		"no-confusing-arrow": "error",
+		"no-console": [
+			"error",
+			{
+				"allow": ["error"]
+			}
+		],
 		"no-continue": "error",
 		"no-div-regex": "error",
 		"no-duplicate-imports": "error",
@@ -145,7 +146,12 @@ module.exports = {
 		"no-magic-numbers": "off",
 		"no-mixed-operators": "error",
 		"no-mixed-requires": "error",
-		"no-multi-spaces": "error",
+		"no-multi-spaces": [
+			"error",
+			{
+				"ignoreEOLComments": true,
+			},
+		],
 		"no-multi-str": "error",
 		"no-multiple-empty-lines": "error",
 		"no-native-reassign": "error",
@@ -215,7 +221,7 @@ module.exports = {
 			"error",
 			"always"
 		],
-		"object-property-newline": "error",
+		"object-property-newline": "off",
 		"object-shorthand": "off",
 		"one-var": "off",
 		"one-var-declaration-per-line": "error",
@@ -242,7 +248,7 @@ module.exports = {
 		"rest-spread-spacing": "error",
 		"semi": [
 			"error",
-			"always"
+			"never"
 		],
 		"semi-spacing": "error",
 		"sort-imports": "error",
