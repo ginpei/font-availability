@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint ./index.js lib/**/*.js test/**/*.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "keywords": [
     "font",
@@ -24,6 +24,9 @@
   "homepage": "https://github.com/ginpei/font-availability#readme",
   "dependencies": {},
   "devDependencies": {
-    "eslint": "^4.7.1"
+    "chai": "^4.1.2",
+    "eslint": "^4.7.1",
+    "mocha": "^3.5.3",
+    "sinon": "^3.3.0"
   }
 }
