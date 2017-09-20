@@ -13,10 +13,6 @@ The problem is that you don't know when the fonts are actually available.
 No.
 It fires not when *a font* is loaded, but *a CSS* is loaded.
 
-One more problem. It's about canvas.
-
-To start load font files, not CSS files, you have to put at least one element which uses the font on the document. Yes, even if you want to use it only in canvas.
-
 # Usage
 
 ## Basic
