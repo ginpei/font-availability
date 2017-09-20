@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>font-availability</title>
+		<style>
+canvas {
+	box-shadow: 0 0 20px rgba(0,0,0,0.1) inset;
+}
+figure {
+	border: 1px solid #999;
+	padding: 1em;
+	text-align: center;
+	width: 200px;
+}
+		</style>
+	</head>
+	<body>
+		<h1>font-availability</h1>
+		<p>Don't forget try in <strong>new private session</strong>!</p>
+		<p>
+			<button id="load">Start loading</button>
+		</p>
+		<figure>
+			<canvas id="poor-canvas" width="200" height="30"></canvas>
+			<figcaption>Load event</figcaption>
+		</figure>
+		<figure>
+			<canvas id="the-canvas" width="200" height="30"></canvas>
+			<figcaption>Using font-availability</figcaption>
+		</figure>
+		<script>
+window.module = {}
+		</script>
+		<script src="../lib/FontChecker.js"></script>
+		<script>
+const FontChecker = window.module.exports
+window.fontAvailability = {
+	waitFor(fontFamily) {
+		const fc = new FontChecker()
+		return fc.waitFor(fontFamily)
+	},
+}
+		</script>
+		<script>
+document.querySelector('#load').onclick = (event) => {
+	event.target.disabled = true
+
+	const fontFamily = 'Slackey'
+	const url = 'https://fonts.googleapis.com/css?family=Slackey'
+
+	// start loading the font
+	const elLink = document.createElement('link')
+	elLink.href = url
+	elLink.rel = 'stylesheet'
+	document.body.appendChild(elLink)
+
+	// load event
+	elLink.onload = (event) => {
+		render('#poor-canvas')
+	}
+
+	// wait
+	fontAvailability.waitFor(fontFamily)
+		.then(_ => {
+			// then render on a canvas
+			render('#the-canvas')
+		})
+
+	function render(selector) {
+		const elCanvas = document.querySelector(selector)
+		const ctx = elCanvas.getContext('2d')
+		ctx.font = `20px/20px ${fontFamily}, serif`
+		ctx.fillText('Hello World!', 15, 22)
+	}
+}
+		</script>
+	</body>
+</html>
