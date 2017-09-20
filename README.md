@@ -2,6 +2,8 @@
 
 Wait until a font is actually available.
 
+![Gif animation showing that one canvas without this library is rendered in generic font, the other one with it is rendered in proper font](./doc/demo.gif)
+
 # Why?
 
 You can use web fonts really easily by just adding links to CSS files into your HTML statically or dynamically.
