@@ -4,7 +4,9 @@
   "description": "Wait until a font is actually available",
   "main": "index.js",
   "scripts": {
+    "web-build": "browserify ./lib/web-entry.js | babel --presets minify -o build/font-availability.min.js",
     "lint": "eslint ./index.js lib/**/*.js test/**/*.js",
+    "postinstall": "mkdir build",
     "test": "mocha"
   },
   "keywords": [
@@ -24,6 +26,9 @@
   "homepage": "https://github.com/ginpei/font-availability#readme",
   "dependencies": {},
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-minify": "^0.2.0",
+    "browserify": "^14.4.0",
     "chai": "^4.1.2",
     "eslint": "^4.7.1",
     "mocha": "^3.5.3",

@@ -29,19 +29,7 @@ figure {
 			<canvas id="the-canvas" width="200" height="30"></canvas>
 			<figcaption>Using font-availability</figcaption>
 		</figure>
-		<script>
-window.module = {}
-		</script>
-		<script src="../lib/FontChecker.js"></script>
-		<script>
-const FontChecker = window.module.exports
-window.fontAvailability = {
-	waitFor(fontFamily) {
-		const fc = new FontChecker()
-		return fc.waitFor(fontFamily)
-	},
-}
-		</script>
+		<script src="../build/font-availability.min.js"></script>
 		<script>
 document.querySelector('#load').onclick = (event) => {
 	event.target.disabled = true
