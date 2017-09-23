@@ -15,32 +15,40 @@ describe('font-availability', () => {
 		mock.restore()
 	})
 
-	describe('waitFor()', () => {
+	describe('getFontCheckerFor()', () => {
 		it('start a new session for a new font', () => {
 			const spy = sinon.spy()
 			mock.expects('createNew')
 				.withArgs('MyFont')
-				.returns({ wait: spy })
 				.once()
 
-			fontAvailability.waitFor('MyFont')
+			fontAvailability.getFontCheckerFor('MyFont')
 
-			expect(spy.calledOnce).to.equal(true)
 			mock.verify()
 		})
 
 		it('reuse an existing session for a font called before', () => {
-			const stub = sinon.stub()
-				.returns({})
 			mock.expects('createNew')
-				.returns({ wait: stub })
-				.once()
+				.withArgs('MyFont')
+				.returns({})
 
-			const result0 = fontAvailability.waitFor('MyFont')
-			const result1 = fontAvailability.waitFor('MyFont')
+			const result0 = fontAvailability.getFontCheckerFor('MyFont')
+			const result1 = fontAvailability.getFontCheckerFor('MyFont')
 
 			expect(result0).to.equal(result1)
-			mock.verify()
+		})
+	})
+
+	describe('isAvailable()', () => {
+		it('calls the method', () => {
+			const spy = sinon.spy()
+			mock.expects('createNew')
+				.withArgs('MyFont')
+				.returns({ isAvailable: spy })
+
+			fontAvailability.isAvailable('MyFont')
+
+			expect(spy.called).to.equal(true)
 		})
 	})
 })
