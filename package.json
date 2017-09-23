@@ -4,7 +4,7 @@
   "description": "Wait until a font is actually available",
   "main": "index.js",
   "scripts": {
-    "web-build": "browserify ./lib/web-entry.js | babel --presets minify -o build/font-availability.min.js",
+    "web-build": "browserify ./lib/web-entry.js | babel --presets es2015,minify -o build/font-availability.min.js",
     "lint": "eslint ./index.js lib/**/*.js test/**/*.js",
     "postinstall": "mkdir build || echo OK anyway",
     "test": "mocha"
@@ -27,6 +27,7 @@
   "dependencies": {},
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
     "babel-preset-minify": "^0.2.0",
     "browserify": "^14.4.0",
     "chai": "^4.1.2",

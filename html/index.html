@@ -29,36 +29,42 @@ figure {
 			<canvas id="the-canvas" width="200" height="30"></canvas>
 			<figcaption>Using font-availability</figcaption>
 		</figure>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.min.js"></script>
+		<script src="./fallbacks.js"></script>
 		<script src="../build/font-availability.min.js"></script>
 		<script>
-document.querySelector('#load').onclick = (event) => {
+if (typeof Promise !== 'function') {
+	Promise = ES6Promise.Promise
+}
+
+document.querySelector('#load').onclick = function(event) {
 	event.target.disabled = true
 
-	const fontFamily = 'Slackey'
-	const url = 'https://fonts.googleapis.com/css?family=Slackey'
+	var fontFamily = 'Slackey'
+	var url = 'https://fonts.googleapis.com/css?family=Slackey'
 
 	// start loading the font
-	const elLink = document.createElement('link')
+	var elLink = document.createElement('link')
 	elLink.href = url
 	elLink.rel = 'stylesheet'
 	document.body.appendChild(elLink)
 
 	// load event
-	elLink.onload = (event) => {
+	elLink.onload = function(event) {
 		render('#poor-canvas')
 	}
 
 	// wait
 	fontAvailability.waitFor(fontFamily)
-		.then(_ => {
+		.then(function() {
 			// then render on a canvas
 			render('#the-canvas')
 		})
 
 	function render(selector) {
-		const elCanvas = document.querySelector(selector)
-		const ctx = elCanvas.getContext('2d')
-		ctx.font = `20px/20px ${fontFamily}, serif`
+		var elCanvas = document.querySelector(selector)
+		var ctx = elCanvas.getContext('2d')
+		ctx.font = '20px/20px ' + fontFamily + ', serif'
 		ctx.fillText('Hello World!', 15, 22)
 	}
 }
