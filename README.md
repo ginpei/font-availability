@@ -69,6 +69,8 @@ fontAvailability.waitFor(fontFamily)
 - {string} `fontFamily`
 - returns {boolean} `true` if the font is available at that time.
 
+Note: this method also invoke loading the web font file.
+
 ## `fontAvailability.Promise = null`
 
 Fallback for environments which does not support Promise. I mean Internet Explorer.
