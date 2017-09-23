@@ -5,9 +5,11 @@ const FontChecker = require('../lib/FontChecker.js')
 
 describe('FontChecker', () => {
 	let fontChecker
+	let mock
 
 	beforeEach(() => {
 		fontChecker = new FontChecker({ fontFamily: 'My Font' })
+		mock = sinon.mock(fontChecker)
 	})
 
 	describe('constructor', () => {
@@ -33,16 +35,6 @@ describe('FontChecker', () => {
 	})
 
 	describe('wait()', () => {
-		let mock
-
-		beforeEach(() => {
-			mock = sinon.mock(fontChecker)
-		})
-
-		afterEach(() => {
-			mock.restore()
-		})
-
 		it('starts only once', () => {
 			mock.expects('startWaiting')
 				.returns()
@@ -83,6 +75,44 @@ describe('FontChecker', () => {
 		it('returns max', () => {
 			const result = fontChecker.getNextInterval(11, 21)
 			expect(result).to.equal(21)
+		})
+	})
+
+	describe('isAvailable()', () => {
+		it('returns true if both are same but not empty', () => {
+			mock.expects('capture')
+				.withArgs('My Font', 'serif')
+				.returns([1, 2, 3])
+			mock.expects('capture')
+				.withArgs('My Font', 'sans-serif')
+				.returns([1, 2, 3])
+
+			const result = fontChecker.isAvailable('My Font')
+			expect(result).to.equal(true)
+		})
+
+		it('returns false if both are empty', () => {
+			mock.expects('capture')
+				.withArgs('My Font', 'serif')
+				.returns([0, 0, 0])
+			mock.expects('capture')
+				.withArgs('My Font', 'sans-serif')
+				.returns([0, 0, 0])
+
+			const result = fontChecker.isAvailable('My Font')
+			expect(result).to.equal(false)
+		})
+
+		it('returns false if both are not same', () => {
+			mock.expects('capture')
+				.withArgs('My Font', 'serif')
+				.returns([1, 2, 3])
+			mock.expects('capture')
+				.withArgs('My Font', 'sans-serif')
+				.returns([2, 3, 4])
+
+			const result = fontChecker.isAvailable('My Font')
+			expect(result).to.equal(false)
 		})
 	})
 })
