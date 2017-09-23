@@ -90,11 +90,7 @@ Plus, you would prepare a Promise polyfill like this:
 ```html
 <!-- for IE -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.min.js"></script>
-<script>
-if (typeof Promise !== 'function') {
-	Promise = ES6Promise.Promise
-}
-</script>
+<script> if (typeof Promise !== 'function') { Promise = ES6Promise.Promise } </script>
 ```
 
 Finally you can call `window.fontAvailability.waitFor('You Font')`.
