@@ -6,7 +6,7 @@
   "scripts": {
     "web-build": "browserify ./lib/web-entry.js | babel --presets minify -o build/font-availability.min.js",
     "lint": "eslint ./index.js lib/**/*.js test/**/*.js",
-    "postinstall": "mkdir build",
+    "postinstall": "mkdir build || echo OK anyway",
     "test": "mocha"
   },
   "keywords": [
