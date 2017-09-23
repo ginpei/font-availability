@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/ginpei/font-availability.svg?branch=master)](https://travis-ci.org/ginpei/font-availability)
+
 # [WIP] [font-availability](https://github.com/ginpei/font-availability)
 
 Wait until a font is actually available.
