@@ -19,12 +19,13 @@ describe('font-availability', () => {
 		it('start a new session for a new font', () => {
 			const spy = sinon.spy()
 			mock.expects('createNew')
-				.returns({ waitFor: spy })
+				.withArgs('MyFont')
+				.returns({ wait: spy })
 				.once()
 
 			fontAvailability.waitFor('MyFont')
 
-			expect(spy.withArgs('MyFont').calledOnce).to.equal(true)
+			expect(spy.calledOnce).to.equal(true)
 			mock.verify()
 		})
 
@@ -32,7 +33,7 @@ describe('font-availability', () => {
 			const stub = sinon.stub()
 				.returns({})
 			mock.expects('createNew')
-				.returns({ waitFor: stub })
+				.returns({ wait: stub })
 				.once()
 
 			const result0 = fontAvailability.waitFor('MyFont')

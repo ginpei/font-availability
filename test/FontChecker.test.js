@@ -7,7 +7,60 @@ describe('FontChecker', () => {
 	let fontChecker
 
 	beforeEach(() => {
-		fontChecker = new FontChecker()
+		fontChecker = new FontChecker({ fontFamily: 'My Font' })
+	})
+
+	describe('constructor', () => {
+		it('can be created', () => {
+			expect(fontChecker).to.be.an.instanceof(FontChecker)
+		})
+
+		it('throws when fontFamily is not given', () => {
+			expect(() => {
+				fontChecker = new FontChecker()
+			}).to.throw()
+		})
+
+		describe('with a string', () => {
+			beforeEach(() => {
+				fontChecker = new FontChecker('My Font')
+			})
+
+			it('sets the string fontFamily', () => {
+				expect(fontChecker.fontFamily).to.equal('My Font')
+			})
+		})
+	})
+
+	describe('wait()', () => {
+		let mock
+
+		beforeEach(() => {
+			mock = sinon.mock(fontChecker)
+		})
+
+		afterEach(() => {
+			mock.restore()
+		})
+
+		it('starts only once', () => {
+			mock.expects('startWaiting')
+				.returns()
+				.once()
+
+			fontChecker.wait()
+			fontChecker.wait()
+
+			mock.verify()
+		})
+
+		it('returns always same value', () => {
+			mock.expects('startWaiting')
+
+			const result0 = fontChecker.wait()
+			const result1 = fontChecker.wait()
+			expect(result0).to.equal(result1)
+		})
 	})
 
 	describe('callWithInterval()', () => {
