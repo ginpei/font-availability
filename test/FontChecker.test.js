@@ -11,8 +11,6 @@ describe('FontChecker', () => {
 	})
 
 	describe('Promise fallback', () => {
-		let fontChecker
-
 		it('uses fallback if set', done => {
 			const spy = sinon.spy()
 			class MyPromise {
