@@ -17,7 +17,6 @@ describe('font-availability', () => {
 
 	describe('getFontCheckerFor()', () => {
 		it('start a new session for a new font', () => {
-			const spy = sinon.spy()
 			mock.expects('createNew')
 				.withArgs('MyFont')
 				.once()
