@@ -75,19 +75,15 @@ Note: this method also invoke loading the web font file.
 
 # For old browsers (Internet Explorer)
 
-Two are required: Babelify and a Promise polyfill.
+Two are required: Babel and a Promise polyfill.
 
-You need to turn it into old JavaScript using like Babel and ES2015 preset. For example:
-
-```console
-babel --presets es2015,minify -o OUTPUT.min.js YOUR_ENTRY_POINT.js
-```
-
-Or, to just create a single library JavaScript file, you can call this instead:
+You need to turn it into old JavaScript using like Babel and ES2015 preset. To create a such single JavaScript library file, you can call this:
 
 ```console
 $ npm run web-build
 ```
+
+Then you will find it at `build/font-availability.min.js`.
 
 Plus, you would prepare a Promise polyfill like this:
 
@@ -100,6 +96,8 @@ if (typeof Promise !== 'function') {
 }
 </script>
 ```
+
+Finally you can call `window.fontAvailability.waitFor('You Font')`.
 
 # License
 
