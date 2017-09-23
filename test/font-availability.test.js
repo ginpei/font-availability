@@ -29,9 +29,10 @@ describe('font-availability', () => {
 		})
 
 		it('reuse an existing session for a font called before', () => {
-			const spy = sinon.spy()
+			const stub = sinon.stub()
+				.returns({})
 			mock.expects('createNew')
-				.returns({ waitFor: spy })
+				.returns({ waitFor: stub })
 				.once()
 
 			const result0 = fontAvailability.waitFor('MyFont')
