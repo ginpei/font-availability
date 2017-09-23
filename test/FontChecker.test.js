@@ -10,31 +10,6 @@ describe('FontChecker', () => {
 		fontChecker = new FontChecker()
 	})
 
-	describe('Promise fallback', () => {
-		it('uses fallback if set', done => {
-			const spy = sinon.spy()
-			class MyPromise {
-				constructor(callback) {
-					expect(callback).to.equal(spy)
-					done()
-				}
-			}
-
-			fontChecker = new FontChecker({ Promise: MyPromise })
-
-			fontChecker.promise(spy)
-		})
-
-		it('uses default if not set', done => {
-			fontChecker = new FontChecker()
-
-			fontChecker.promise((resolve, reject) => {
-				resolve()
-			})
-				.then(done)
-		})
-	})
-
 	describe('callWithInterval()', () => {
 		it('calls function until it returns false', done => {
 			const callback = sinon.stub()
