@@ -28,7 +28,7 @@ fontAvailability.waitFor('Your Font Family')
 
 ## Instance
 
-Try to use [Slackey](https://fonts.google.com/specimen/Slackey) by Google Fonts dinamically.
+Try to use [Slackey](https://fonts.google.com/specimen/Slackey) by Google Fonts dynamically.
 
 ```html
 <canvas id="the-canvas"></canvas>
