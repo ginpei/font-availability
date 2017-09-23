@@ -71,13 +71,33 @@ fontAvailability.waitFor(fontFamily)
 
 Note: this method also invoke loading the web font file.
 
-## `fontAvailability.Promise = null`
+# For old browsers (Internet Explorer)
 
-Fallback for environments which does not support Promise. I mean Internet Explorer.
+Two are required: Babelify and a Promise polyfill.
 
-- [Can I use... Support tables for HTML5, CSS3, etc](https://caniuse.com/#feat=promises)
+You need to turn it into old JavaScript using like Babel and ES2015 preset. For example:
 
-**TODO: prepare example codes**
+```console
+babel --presets es2015,minify -o OUTPUT.min.js YOUR_ENTRY_POINT.js
+```
+
+Or, to just create a single library JavaScript file, you can call this instead:
+
+```console
+$ npm run web-build
+```
+
+Plus, you would prepare a Promise polyfill like this:
+
+```html
+<!-- for IE -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.min.js"></script>
+<script>
+if (typeof Promise !== 'function') {
+	Promise = ES6Promise.Promise
+}
+</script>
+```
 
 # License
 
